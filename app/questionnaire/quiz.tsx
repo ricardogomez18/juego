@@ -254,8 +254,8 @@ const Quiz = () => {
   // }, [isAnswered, isCorrect]); // Effect runs when these dependencies change
 
   return (
-    <div className="container ml-20 mt-20">
-      <div className="flex  w-full justify-center items-center mb-10">
+    <div className="container ml-10 mt-5">
+      <div className="flex  w-full justify-center items-center mb-5">
         {" "}
         <div className="flex-1">
           <h1 className="text-5xl mb-2 font-bold text-green-600">
@@ -283,7 +283,7 @@ const Quiz = () => {
                   onClick={() => handleOptionClick(option.code, isCorrect)}
                   style={{
                     cursor: "pointer",
-                    padding: "10px",
+                    padding: "8px",
                     margin: "5px 0",
                     border: "1px solid #ccc",
                     borderRadius: "5px",
