@@ -254,7 +254,7 @@ const Quiz = () => {
   // }, [isAnswered, isCorrect]); // Effect runs when these dependencies change
 
   return (
-    <div className="container ml-10 mt-5">
+    <div className="container mx-auto mt-5">
       <div className="flex  w-full justify-center items-center mb-5">
         {" "}
         <div className="flex-1">
