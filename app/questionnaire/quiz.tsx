@@ -246,13 +246,6 @@ const Quiz = () => {
     setQuizData(allQuestions); // Set shuffled data
   }, []); // Empty dependency array ensures this runs once
 
-  // useEffect(() => {
-  //   if (isAnswered && !isCorrect) {
-  //     const audio = new Audio("/failure-sound.mp3"); // Path relative to the public folder
-  //     audio.play().catch((err) => console.error("Error playing audio:", err)); // Handle any play errors
-  //   }
-  // }, [isAnswered, isCorrect]); // Effect runs when these dependencies change
-
   return (
     <div className="container mx-auto mt-5">
       <div className="flex  w-full justify-center items-center mb-5">
