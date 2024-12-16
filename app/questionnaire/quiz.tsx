@@ -167,7 +167,7 @@ const shuffleArray = (array: QuizQuestion[]) => {
 const generateQuizData = (numQuestions: number) => {
   const questions = [];
   for (let i = 0; i < numQuestions; i++) {
-    let num1 = Math.floor(Math.random() * 90) + 10; // Two-digit number
+    let num1 = Math.floor(Math.random() * 90) + 10; //
     let num2 = Math.floor(Math.random() * 90) + 10; // Two-digit number
     const isAddition = Math.random() > 0.5; // Randomly choose addition or subtraction
     if (num1 < num2) {
