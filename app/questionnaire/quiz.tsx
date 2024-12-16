@@ -2,7 +2,18 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-const quizDatas = [
+interface Option {
+  code: string;
+  label: string;
+}
+
+interface QuizQuestion {
+  label: string;
+  options: Option[];
+  answer: string;
+}
+
+const quizDatas: QuizQuestion[] = [
   // {
   //   label: "Donde juega Mbape ahora?",
   //   options: [
@@ -149,11 +160,11 @@ const quizDatas = [
 ];
 
 // Function to shuffle an array
-const shuffleArray = (array) => {
+const shuffleArray = (array: QuizQuestion[]) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
-const generateQuizData = (numQuestions) => {
+const generateQuizData = (numQuestions: number) => {
   const questions = [];
   for (let i = 0; i < numQuestions; i++) {
     let num1 = Math.floor(Math.random() * 90) + 10; // Two-digit number
@@ -197,16 +208,16 @@ const generateQuizData = (numQuestions) => {
 };
 
 const Quiz = () => {
-  const [quizData, setQuizData] = useState([]); // State for the quiz data
+  const [quizData, setQuizData] = useState<QuizQuestion[]>([]); // State for the quiz data
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedAnswer, setSelectedAnswer] = useState<string>("");
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [correctAnswersCount, setCorrectAnswersCount] = useState(0); // Global counter
 
   const currentQuestion = quizData[currentQuestionIndex];
 
-  const handleOptionClick = (selectedOption, isco) => {
+  const handleOptionClick = (selectedOption: string, isco: boolean) => {
     if (!isAnswered) {
       setSelectedAnswer(selectedOption);
       setIsAnswered(true);
@@ -224,7 +235,7 @@ const Quiz = () => {
   };
 
   const handleNext = () => {
-    setSelectedAnswer(null);
+    setSelectedAnswer("");
     setIsAnswered(false);
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
