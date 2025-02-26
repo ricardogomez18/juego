@@ -1,0 +1,42 @@
+[
+  {
+    "label": "Quien es la mama mas linda del mundo",
+    "options": [
+      {
+        "code": "Eugenia",
+        "label": "Eugenia"
+      },
+      {
+        "code": "Laura",
+        "label": "Laura"
+      },
+      {
+        "code": "Dayna",
+        "label": "Dayna"
+      }
+    ],
+    "answer": "Dayna"
+  },
+  {
+    "label": "Donde nacio Lucas",
+    "options": [
+      {
+        "code": "Mexico",
+        "label": "Mexico"
+      },
+      {
+        "code": "Rusia",
+        "label": "Rusia"
+      },
+      {
+        "code": "Cuba",
+        "label": "Cuba"
+      },
+      {
+        "code": "Uganda",
+        "label": "Uganda"
+      }
+    ],
+    "answer": "Cuba"
+  }
+]
