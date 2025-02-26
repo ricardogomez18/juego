@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import Quiz from "./quiz";
-
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 interface Answer {
   id: number;
   user: string;
@@ -10,15 +10,13 @@ interface Answer {
 }
 
 async function getUser(id: string) {
-  const res = await fetch(`http://localhost:3000/api/users?name=${id}`);
+  const res = await fetch(`${API_URL}api/users?name=${id}`);
   if (!res.ok) return null;
   return res.json();
 }
 
 async function getAnswer(qn: string, user: string) {
-  const res = await fetch(
-    `http://localhost:3000/api/answer?qn=${qn}&user=${user}`
-  );
+  const res = await fetch(`${API_URL}api/answer?qn=${qn}&user=${user}`);
   if (!res.ok) return null;
   return res.json();
 }
