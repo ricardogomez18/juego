@@ -1,12 +1,16 @@
 import { notFound } from "next/navigation";
 import Quiz from "./quiz";
 
-interface UserPageProps {
-  params: { id: string; qn: string; qs: string };
+interface Answer {
+  id: number;
+  user: string;
+  questionaire: string;
+  question: string;
+  answer: string;
 }
 
 async function getUser(id: string) {
-  const res = await fetch(`http://localhost:3000/api/users/${id}`);
+  const res = await fetch(`http://localhost:3000/api/users?name=${id}`);
   if (!res.ok) return null;
   return res.json();
 }
@@ -19,7 +23,7 @@ async function getAnswer(qn: string, user: string) {
   return res.json();
 }
 
-function findAnswer(qs: string, asw: any[]) {
+function findAnswer(qs: string, asw: Answer[]) {
   for (let i = 0; i < asw.length; i++) {
     if (asw[i].question == qs) {
       return asw[i].answer;
@@ -28,9 +32,22 @@ function findAnswer(qs: string, asw: any[]) {
   return "";
 }
 
-export default async function UserPage({ params }: UserPageProps) {
-  // Await the params before accessing id
-  const { id, qn, qs } = await params;
+// interface UserPageProps {
+//   params: { id: string; qn: string; qs: string };
+// }
+
+export default async function UserPage({
+  params,
+}: {
+  params: Promise<{ id: string; qn: string; qs: string }>;
+}) {
+  const id = (await params).id;
+  const qn = (await params).qn;
+  const qs = (await params).qs;
+
+  // export default async function UserPage({ params }: UserPageProps) {
+  //   // ✅ Just destructure `params`, no need for `await`
+  //   const { id, qn, qs } = params;
 
   const user = await getUser(id);
   const answer = await getAnswer(qn, id);
