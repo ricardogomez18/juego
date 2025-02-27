@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation";
+//import { notFound } from "next/navigation";
 import Quiz from "./quiz";
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 interface Answer {
@@ -9,11 +9,11 @@ interface Answer {
   answer: string;
 }
 
-async function getUser(id: string) {
-  const res = await fetch(`${API_URL}api/users?name=${id}`);
-  if (!res.ok) return null;
-  return res.json();
-}
+// async function getUser(id: string) {
+//   const res = await fetch(`${API_URL}api/users?name=${id}`);
+//   if (!res.ok) return null;
+//   return res.json();
+// }
 
 async function getAnswer(qn: string, user: string) {
   const res = await fetch(`${API_URL}api/answer?qn=${qn}&user=${user}`);
@@ -47,12 +47,12 @@ export default async function UserPage({
   //   // ✅ Just destructure `params`, no need for `await`
   //   const { id, qn, qs } = params;
 
-  const user = await getUser(id);
+  //const user = await getUser(id);
   const answer = await getAnswer(qn, id);
   const as = findAnswer(qs, answer);
   console.log(as, "ANSWER");
 
-  if (!user) return notFound();
+  //if (!user) return notFound();
   const prop = { qn: qn, qs: qs, answer: as, user: id };
 
   return (
