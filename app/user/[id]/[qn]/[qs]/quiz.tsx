@@ -163,7 +163,7 @@ const Quiz = (prop: Prop) => {
       )}
       {isAnswered && (
         <div className="mx-2  md:mx-auto">
-          <h3 className="text-4xl mt-20 font-bold">
+          <h3 className="text-4xl mt-20 font-bold text-green-500">
             {" "}
             Muchas gracias por responder!!!!! Lucas te agradece
           </h3>
