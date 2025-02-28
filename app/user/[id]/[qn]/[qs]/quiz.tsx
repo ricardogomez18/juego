@@ -26,9 +26,9 @@ const Quiz = (prop: Prop) => {
   const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion>();
 
   const handleOptionClick = (selectedOption: string) => {
-    if (!isAnswered) {
+    if (true) {
       setSelectedAnswer(selectedOption);
-      setIsAnswered(true);
+      //setIsAnswered(true);
     }
   };
   console.log(currentQuestionIndex);
@@ -56,16 +56,19 @@ const Quiz = (prop: Prop) => {
   };
 
   const handleNext = () => {
-    setIsAnswered(false);
-
-    const nq = quizData[currentQuestionIndex + 1];
-    router.push(nq.id);
+    //setIsAnswered(false);
     postAnswer(prop.user, prop.qn, prop.qs, selectedAnswer);
-    setSelectedAnswer("");
+    const nq = quizData[currentQuestionIndex + 1];
+    if (nq) {
+      router.push(nq.id);
+      setSelectedAnswer("");
+    } else {
+      setIsAnswered(true);
+    }
   };
 
   const previous = () => {
-    setIsAnswered(false);
+    //setIsAnswered(false);
 
     const nq = quizData[currentQuestionIndex - 1];
     router.push(nq.id);
@@ -98,75 +101,75 @@ const Quiz = (prop: Prop) => {
   console.log(selectedAnswer, "selectedAnswer");
 
   return (
-    <div className="container mx-auto mt-5">
-      {/* <div className="flex  w-full justify-center items-center mb-5">
-        {" "}
-        <div className="flex-1">
-          <h1 className="text-5xl mb-2 font-bold text-green-600">
-            Gana o caca
-          </h1>
-        </div>
-        <div className="block">
-          <p className="text-lg mb-5">
-            Respuestas correctas: {correctAnswersCount}
-          </p>{" "}
-        </div>
-      </div> */}
-      {/* Display global counter */}
-      {currentQuestion && (
-        <div style={{ marginBottom: "20px" }}>
-          <h3 className="text-2xl mb-5 font-bold">{currentQuestion.label}</h3>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            {currentQuestion.options.map((option, optionIndex) => {
-              const isSelected = selectedAnswer === option.code;
+    <>
+      {!isAnswered && (
+        <div className="container mx-2 mt-5 md:mx-auto">
+          {currentQuestion && (
+            <div style={{ marginBottom: "20px" }}>
+              <h3 className="text-2xl mb-5 font-bold">
+                {currentQuestion.label}
+              </h3>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                {currentQuestion.options.map((option, optionIndex) => {
+                  const isSelected = selectedAnswer === option.code;
 
-              return (
-                <li
-                  key={optionIndex}
-                  onClick={() => handleOptionClick(option.code)}
-                  style={{
-                    cursor: "pointer",
-                    padding: "8px",
-                    margin: "5px 0",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                    backgroundColor: isSelected ? "lightgreen" : "white",
-                  }}
-                >
-                  {option.label}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
-      <div className="w-full flex justify-between">
-        {currentQuestionIndex > 0 && (
-          <div className="w-full justify-center flex items-center mt-10">
-            <button
-              onClick={previous}
-              type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            >
-              Anterior
-            </button>
-          </div>
-        )}
-
-        {selectedAnswer !== "" &&
-          currentQuestionIndex < quizData.length - 1 && (
-            <div className="w-full justify-center flex items-center mt-10">
-              <button
-                onClick={handleNext}
-                type="button"
-                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                Siguiente
-              </button>
+                  return (
+                    <li
+                      key={optionIndex}
+                      onClick={() => handleOptionClick(option.code)}
+                      style={{
+                        cursor: "pointer",
+                        padding: "8px",
+                        margin: "5px 0",
+                        border: "1px solid #ccc",
+                        borderRadius: "5px",
+                        backgroundColor: isSelected ? "lightgreen" : "white",
+                      }}
+                    >
+                      {option.label}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           )}
-      </div>
-    </div>
+          <div className="w-full flex justify-between">
+            <div className="w-full justify-center flex items-center mt-10">
+              {currentQuestionIndex > 0 && (
+                <button
+                  onClick={previous}
+                  type="button"
+                  className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 focus:outline-none "
+                >
+                  Anterior
+                </button>
+              )}
+            </div>
+
+            <div className="w-full justify-center flex items-center mt-10">
+              {selectedAnswer !== "" &&
+                currentQuestionIndex < quizData.length && (
+                  <button
+                    onClick={handleNext}
+                    type="button"
+                    className="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                  >
+                    Siguiente
+                  </button>
+                )}
+            </div>
+          </div>
+        </div>
+      )}
+      {isAnswered && (
+        <div className="mx-2  md:mx-auto">
+          <h3 className="text-4xl mt-20 font-bold">
+            {" "}
+            Muchas gracias por responder!!!!! Lucas te agradece
+          </h3>
+        </div>
+      )}
+    </>
   );
 };
 
