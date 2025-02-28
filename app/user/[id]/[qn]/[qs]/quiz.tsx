@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { QN, QuizQuestion } from "./questions";
+
 import { useRouter } from "next/navigation";
+import { QN, QuizQuestion } from "@/app/model/questions";
 
 interface Prop {
   qn: string;

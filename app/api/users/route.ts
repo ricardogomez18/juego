@@ -7,20 +7,21 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const name = url.searchParams.get("name");
 
-  if (!name) {
-    return NextResponse.json({ error: "Invalid user name" }, { status: 400 });
-  }
-
   try {
-    const user = await prisma.user.findFirst({
-      where: { name },
-    });
+    if (name) {
+      // Fetch user by name if the name parameter is provided
+      const user = await prisma.user.findFirst({ where: { name } });
 
-    if (!user) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      if (!user) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+      }
+
+      return NextResponse.json(user);
     }
 
-    return NextResponse.json(user);
+    // Fetch all users if no name parameter is provided
+    const users = await prisma.user.findMany();
+    return NextResponse.json(users);
   } catch (error) {
     console.error("Database error:", error);
     return NextResponse.json(
