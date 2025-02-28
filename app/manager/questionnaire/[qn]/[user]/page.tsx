@@ -70,8 +70,15 @@ export default async function UserPage({
     <div className="container mx-auto mt-5 flex">
       <div className=" border-2 border-red-100 p-4">
         {users.map((key: User) => (
-          <div key={key.id} className={user == key.name ? "text-red-500" : ""}>
-            <Link href={key.name}>{key.name}</Link>
+          <div
+            key={key.id}
+            className={
+              user == key.name ? "text-red-500 p-2" : "text-blue-500 p-2"
+            }
+          >
+            <Link className="" href={key.name}>
+              {key.email}
+            </Link>
           </div>
         ))}
       </div>

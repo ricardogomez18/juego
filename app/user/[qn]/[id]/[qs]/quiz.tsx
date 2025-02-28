@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { useRouter } from "next/navigation";
 import { QN, QuizQuestion } from "@/app/model/questions";
+import Image from "next/image";
 
 interface Prop {
   qn: string;
@@ -106,6 +107,16 @@ const Quiz = (prop: Prop) => {
         <div className="container mx-2 mt-5 md:mx-auto">
           {currentQuestion && (
             <div style={{ marginBottom: "20px" }}>
+              <div className="flex w-full items-center justify-center">
+                <Image
+                  className="dark:invert mb-4"
+                  src="/MC-About_Key-Art_Gather_Resources_600x800.avif"
+                  alt="Next.js logo"
+                  width={180}
+                  height={38}
+                  priority
+                />
+              </div>
               <h3 className="text-2xl mb-5 font-bold">
                 {currentQuestion.label}
               </h3>
