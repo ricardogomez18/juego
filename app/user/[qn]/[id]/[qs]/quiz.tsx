@@ -112,7 +112,7 @@ const Quiz = (prop: Prop) => {
                   className="dark:invert mb-4"
                   src="/MC-About_Key-Art_Gather_Resources_600x800.avif"
                   alt="Next.js logo"
-                  width={180}
+                  width={100}
                   height={38}
                   priority
                 />

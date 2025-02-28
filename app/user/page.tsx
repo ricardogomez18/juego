@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 export default function Home() {
   const pathname = usePathname();
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+    <div className="container mt-5">
+      <main className="mx-2 flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <Image
           className="dark:invert"
           src="/minecraft_1.png"
@@ -15,13 +15,13 @@ export default function Home() {
           height={38}
           priority
         />
-        <h1 className="text-8xl text-green-600">OPCIDIANT COUNTRY</h1>
+        <h1 className="text-4xl text-green-600">OPCIDIANT COUNTRY</h1>
         <div className="text-3xl font-medium">
           Bienvenidos a Opcidiant!!! Tienes que responder algunas preguntas.{" "}
-          <p className="text-red-600">
+          <p className="text-red-600 mt-2">
             Al concluir este cuestionario usted estara firmando su contrato.{" "}
           </p>
-          <p className="text-red-600 font-semibold ">
+          <p className="text-red-600 font-semibold mt-2">
             El presidente Lucas revisara todas las respuestas y arreglara lo que
             estime conveniente, incluido el SALARIO.{" "}
           </p>

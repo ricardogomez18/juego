@@ -25,13 +25,13 @@ export default async function UserPage({
   const qn = (await params).qn;
 
   return (
-    <div className="container mx-auto mt-5">
+    <div className="container  mx-4 mt-5">
       <h3 className="text-2xl mb-5 font-bold">Quien eres?</h3>
       <div className=" mt-4 ">
         {users.map((key: User) => (
           <div key={key.id} className="mb-2">
             <Link
-              className="text-blue-500"
+              className="text-blue-500 text-lg"
               href={`/user/${qn}/${key.name}/QN1_1`}
             >
               {key.email}
